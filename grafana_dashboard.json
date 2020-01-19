@@ -16,20 +16,67 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": 3,
-  "iteration": 1579380996365,
+  "iteration": 1579417192482,
   "links": [],
   "panels": [
     {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#5794F2",
+        "#73BF69",
+        "#FA6400"
+      ],
       "datasource": null,
+      "decimals": 2,
+      "description": "",
+      "format": "celsius",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
       "gridPos": {
-        "h": 1,
-        "w": 24,
+        "h": 2,
+        "w": 8,
         "x": 0,
         "y": 0
       },
-      "id": 16,
-      "panels": [],
+      "id": 23,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "maxPerRow": 6,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
       "repeat": "position",
+      "repeatDirection": "h",
       "scopedVars": {
         "position": {
           "selected": false,
@@ -37,8 +84,37 @@
           "value": "corridor_upstairs"
         }
       },
-      "title": "Current $position",
-      "type": "row"
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "avg(temperature{position=\"$position\"}) by (position)",
+          "legendFormat": "{{position}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "18,24",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Current Temperature $position",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
     },
     {
       "cacheTimeout": null,
@@ -62,11 +138,11 @@
       },
       "gridPos": {
         "h": 2,
-        "w": 5,
-        "x": 0,
-        "y": 1
+        "w": 8,
+        "x": 8,
+        "y": 0
       },
-      "id": 6,
+      "id": 24,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -81,6 +157,7 @@
         }
       ],
       "maxDataPoints": 100,
+      "maxPerRow": 6,
       "nullPointMode": "connected",
       "nullText": null,
       "options": {},
@@ -95,16 +172,20 @@
           "to": "null"
         }
       ],
+      "repeat": null,
+      "repeatDirection": "h",
+      "repeatIteration": 1579417192482,
+      "repeatPanelId": 23,
       "scopedVars": {
         "position": {
           "selected": false,
-          "text": "corridor_upstairs",
-          "value": "corridor_upstairs"
+          "text": "living_room",
+          "value": "living_room"
         }
       },
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
         "show": true,
         "ymax": null,
@@ -121,7 +202,106 @@
       "thresholds": "18,24",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Current Temperature",
+      "title": "Current Temperature $position",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#5794F2",
+        "#73BF69",
+        "#FA6400"
+      ],
+      "datasource": null,
+      "decimals": 2,
+      "description": "",
+      "format": "celsius",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "id": 25,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "maxPerRow": 6,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "repeat": null,
+      "repeatDirection": "h",
+      "repeatIteration": 1579417192482,
+      "repeatPanelId": 23,
+      "scopedVars": {
+        "position": {
+          "selected": false,
+          "text": "outdoor_entrance",
+          "value": "outdoor_entrance"
+        }
+      },
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "avg(temperature{position=\"$position\"}) by (position)",
+          "legendFormat": "{{position}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "18,24",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Current Temperature $position",
       "transparent": true,
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -155,9 +335,9 @@
       },
       "gridPos": {
         "h": 2,
-        "w": 4,
-        "x": 5,
-        "y": 1
+        "w": 8,
+        "x": 0,
+        "y": 2
       },
       "id": 7,
       "interval": null,
@@ -174,6 +354,7 @@
         }
       ],
       "maxDataPoints": 100,
+      "maxPerRow": 6,
       "nullPointMode": "connected",
       "nullText": null,
       "options": {},
@@ -188,6 +369,8 @@
           "to": "null"
         }
       ],
+      "repeat": "position",
+      "repeatDirection": "h",
       "scopedVars": {
         "position": {
           "selected": false,
@@ -197,7 +380,7 @@
       },
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
         "show": true,
         "ymax": null,
@@ -214,127 +397,7 @@
       "thresholds": "60,70",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Current Humidity",
-      "transparent": true,
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 3
-      },
-      "id": 17,
-      "panels": [],
-      "repeat": null,
-      "repeatIteration": 1579380996365,
-      "repeatPanelId": 16,
-      "scopedVars": {
-        "position": {
-          "selected": false,
-          "text": "living_room",
-          "value": "living_room"
-        }
-      },
-      "title": "Current $position",
-      "type": "row"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": true,
-      "colors": [
-        "#5794F2",
-        "#73BF69",
-        "#FA6400"
-      ],
-      "datasource": null,
-      "decimals": 2,
-      "description": "",
-      "format": "celsius",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 5,
-        "x": 0,
-        "y": 4
-      },
-      "id": 18,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "options": {},
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "repeatIteration": 1579380996365,
-      "repeatPanelId": 6,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "position": {
-          "selected": false,
-          "text": "living_room",
-          "value": "living_room"
-        }
-      },
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": null
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "avg(temperature{position=\"$position\"}) by (position)",
-          "legendFormat": "{{position}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "18,24",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Current Temperature",
+      "title": "Current Humidity $position",
       "transparent": true,
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -368,11 +431,11 @@
       },
       "gridPos": {
         "h": 2,
-        "w": 4,
-        "x": 5,
-        "y": 4
+        "w": 8,
+        "x": 8,
+        "y": 2
       },
-      "id": 19,
+      "id": 26,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -387,6 +450,7 @@
         }
       ],
       "maxDataPoints": 100,
+      "maxPerRow": 6,
       "nullPointMode": "connected",
       "nullText": null,
       "options": {},
@@ -401,9 +465,10 @@
           "to": "null"
         }
       ],
-      "repeatIteration": 1579380996365,
+      "repeat": null,
+      "repeatDirection": "h",
+      "repeatIteration": 1579417192482,
       "repeatPanelId": 7,
-      "repeatedByRow": true,
       "scopedVars": {
         "position": {
           "selected": false,
@@ -413,7 +478,7 @@
       },
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
         "show": true,
         "ymax": null,
@@ -430,127 +495,7 @@
       "thresholds": "60,70",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Current Humidity",
-      "transparent": true,
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 6
-      },
-      "id": 20,
-      "panels": [],
-      "repeat": null,
-      "repeatIteration": 1579380996365,
-      "repeatPanelId": 16,
-      "scopedVars": {
-        "position": {
-          "selected": false,
-          "text": "outdoor_entrance",
-          "value": "outdoor_entrance"
-        }
-      },
-      "title": "Current $position",
-      "type": "row"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": true,
-      "colors": [
-        "#5794F2",
-        "#73BF69",
-        "#FA6400"
-      ],
-      "datasource": null,
-      "decimals": 2,
-      "description": "",
-      "format": "celsius",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 5,
-        "x": 0,
-        "y": 7
-      },
-      "id": 21,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "options": {},
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "repeatIteration": 1579380996365,
-      "repeatPanelId": 6,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "position": {
-          "selected": false,
-          "text": "outdoor_entrance",
-          "value": "outdoor_entrance"
-        }
-      },
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": null
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "avg(temperature{position=\"$position\"}) by (position)",
-          "legendFormat": "{{position}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "18,24",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Current Temperature",
+      "title": "Current Humidity $position",
       "transparent": true,
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -584,11 +529,11 @@
       },
       "gridPos": {
         "h": 2,
-        "w": 4,
-        "x": 5,
-        "y": 7
+        "w": 8,
+        "x": 16,
+        "y": 2
       },
-      "id": 22,
+      "id": 27,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -603,6 +548,7 @@
         }
       ],
       "maxDataPoints": 100,
+      "maxPerRow": 6,
       "nullPointMode": "connected",
       "nullText": null,
       "options": {},
@@ -617,9 +563,10 @@
           "to": "null"
         }
       ],
-      "repeatIteration": 1579380996365,
+      "repeat": null,
+      "repeatDirection": "h",
+      "repeatIteration": 1579417192482,
       "repeatPanelId": 7,
-      "repeatedByRow": true,
       "scopedVars": {
         "position": {
           "selected": false,
@@ -629,7 +576,7 @@
       },
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
+        "full": true,
         "lineColor": "rgb(31, 120, 193)",
         "show": true,
         "ymax": null,
@@ -646,7 +593,7 @@
       "thresholds": "60,70",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Current Humidity",
+      "title": "Current Humidity $position",
       "transparent": true,
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -666,7 +613,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 4
       },
       "id": 14,
       "panels": [],
@@ -685,7 +632,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 10
+        "y": 5
       },
       "hiddenSeries": false,
       "id": 4,
@@ -777,7 +724,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 10
+        "y": 5
       },
       "hiddenSeries": false,
       "id": 2,
@@ -869,7 +816,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 17
+        "y": 12
       },
       "hiddenSeries": false,
       "id": 8,
@@ -898,13 +845,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "deriv(temperature{position=~\"$position\"}[20m])",
+          "expr": "deriv(temperature{position=~\"$position\"}[20m])*3600",
           "intervalFactor": 1,
           "legendFormat": "{{position}}",
           "refId": "A"
         },
         {
-          "expr": "deriv(temperature{position=~\"$position\"}[20m] offset 1d)",
+          "expr": "deriv(temperature{position=~\"$position\"}[20m] offset 1d)*3600",
           "instant": false,
           "legendFormat": "{{position}} DoD",
           "refId": "B"
@@ -931,7 +878,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": "°C/s",
+          "label": "°C/h",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -963,7 +910,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 17
+        "y": 12
       },
       "hiddenSeries": false,
       "id": 9,
@@ -992,12 +939,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "deriv(humidity{position=~\"$position\"}[20m])",
+          "expr": "deriv(humidity{position=~\"$position\"}[20m])*3600",
           "legendFormat": "{{position}}",
           "refId": "A"
         },
         {
-          "expr": "deriv(humidity{position=~\"$position\"}[20m] offset 1d)",
+          "expr": "deriv(humidity{position=~\"$position\"}[20m] offset 1d)*3600",
           "legendFormat": "{{position}} DoD",
           "refId": "B"
         }
@@ -1023,7 +970,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": "%/s",
+          "label": "%/h",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1044,7 +991,7 @@
       }
     }
   ],
-  "refresh": false,
+  "refresh": "5s",
   "schemaVersion": 21,
   "style": "dark",
   "tags": [],
@@ -1053,6 +1000,7 @@
       {
         "allValue": ".*",
         "current": {
+          "selected": false,
           "tags": [],
           "text": "All",
           "value": [
@@ -1102,7 +1050,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -1122,5 +1070,5 @@
   "timezone": "",
   "title": "Home monitoring",
   "uid": "2f_ntFPZk",
-  "version": 17
+  "version": 20
 }
