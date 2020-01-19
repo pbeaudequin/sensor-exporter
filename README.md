@@ -29,7 +29,7 @@ A dashboard json file is available : `grafana_dashboard.json`
 
 Extracted with `sudo hcitool lescan`.
 
-- 4C:65:A8:D0:5E:C3 MJ_HT_V1   --> living_room (old sensor version)
-- A4:C1:38:F7:9B:D3 LYWSD03MMC --> Outside entrance
-- A4:C1:38:E2:CC:FA LYWSD03MMC --> living_room (new sensor)
-- A4:C1:38:71:9D:D4 LYWSD03MMC --> bathroom
+- `4C:65:A8:D0:5E:C3` MJ_HT_V1   --> living_room (old sensor version)
+- `A4:C1:38:F7:9B:D3` LYWSD03MMC --> Outside entrance
+- `A4:C1:38:E2:CC:FA` LYWSD03MMC --> living_room (new sensor)
+- `A4:C1:38:71:9D:D4` LYWSD03MMC --> bathroom

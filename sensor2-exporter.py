@@ -7,9 +7,10 @@ dSensor = {
 }
 
 from prometheus_client import start_http_server, Gauge, Counter
+# Metrics definition
 g_temp = Gauge('temperature','temperature',['position'])
 g_humidity = Gauge('humidity','humidity',['position'])
-g_error = Counter('error','error',['posiition'])
+g_error = Counter('error','error',['position','kind'])
 
 
 class MyDelegate(btle.DefaultDelegate):
@@ -25,11 +26,16 @@ class MyDelegate(btle.DefaultDelegate):
         g_humidity.labels(self.name).set(humidity)
 
 def initSensor(name,mac):
-    p = btle.Peripheral( mac )
-    p.setDelegate( MyDelegate(name) )
-    print(f'Initialised {name:30} with {mac}')
-    return p
-
+    try:
+        p = btle.Peripheral( mac )
+        p.withDelegate( MyDelegate(name) )
+        print(f'Initialised {name:30} with {mac}')
+        return p
+    except:
+        print(f'Failed to initialise {name}')
+        g_error.labels(position=name,kind='initialisation').inc()
+        return (name,mac)
+    
 if __name__ == '__main__':
     # Start up the server to expose the metrics.
     start_http_server(8000)
@@ -37,11 +43,21 @@ if __name__ == '__main__':
     l = [ initSensor(n,m) for n,m in dSensor.items()]
 
     while True:
-        for p in l:
+        for i,p in enumerate(l):
+            #Manage connection issues
+            if type(p)==tuple :
+                (name,mac)=p
+                l[i]=initSensor(name,mac)  # TODO: not elegant
+                continue
+                
             try:
                 if p.waitForNotifications(1.0):
                     continue
             except btle.BTLEDisconnectError:
-                print(f'{p.name} disconnect')
-                g_error.label(p.name).inc(1)
-                p.connect()
+                print(f'{p.addr} disconnect')
+                g_error.labels(position=name,kind='disconnect').inc()
+                try:
+                    p.connect(p.addr)
+                except:
+                    g_error.labels(position=name,kind='reconnect').inc()
+                    
