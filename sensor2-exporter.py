@@ -9,6 +9,7 @@ dSensor = {
 from prometheus_client import start_http_server, Gauge, Counter
 g_temp = Gauge('temperature','temperature',['position'])
 g_humidity = Gauge('humidity','humidity',['position'])
+g_error = Counter('error','error',['posiition'])
 
 
 class MyDelegate(btle.DefaultDelegate):
@@ -37,5 +38,10 @@ if __name__ == '__main__':
 
     while True:
         for p in l:
-            if p.waitForNotifications(1.0):
-                continue
+            try:
+                if p.waitForNotifications(1.0):
+                    continue
+            except btle.BTLEDisconnectError:
+                print(f'{p.name} disconnect')
+                g_error.label(p.name).inc(1)
+                p.connect()
