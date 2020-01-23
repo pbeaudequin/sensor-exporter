@@ -1,4 +1,5 @@
 from bluepy import btle
+import sys, traceback
 
 dSensor = {
     'outdoor_entrance':'A4:C1:38:F7:9B:D3',
@@ -24,40 +25,44 @@ class MyDelegate(btle.DefaultDelegate):
         print(f'{self.name:25} | Temp {temp:2.2f} | Humidity {humidity:2.0f}')
         g_temp.labels(self.name).set(temp)
         g_humidity.labels(self.name).set(humidity)
+        
+        
+class PeripheralWrapper(btle.Peripheral):
+    def __init__(self,name,mac):
+        self.mac = mac
+        self.name= name
+        self.init()
+        
+    def init(self):
+        try:
+            super().__init__(self.mac)
+            self.withDelegate( MyDelegate(self.name) )
+            print(f'Initialised {self.name:30} with {self.mac}')
+        except:
+            print(f'Failed to initialise {self.name}')
+            traceback.print_exc(file=sys.stdout)
+            g_error.labels(position=self.name,kind='initialisation').inc()
+            
+    def consumeNotification(self):
+        if not hasattr(self._helper,'poll'):
+            self.disconnect()
+            self.init()
+        else:
+            try:
+                self.waitForNotifications(1.0)
+            except:
+                traceback.print_exc(file=sys.stdout)
+                g_error.labels(position=self.name,kind='waitForNotif').inc()
+                self.disconnect()
+                
 
-def initSensor(name,mac):
-    try:
-        p = btle.Peripheral( mac )
-        p.withDelegate( MyDelegate(name) )
-        print(f'Initialised {name:30} with {mac}')
-        return p
-    except:
-        print(f'Failed to initialise {name}')
-        g_error.labels(position=name,kind='initialisation').inc()
-        return (name,mac)
-    
 if __name__ == '__main__':
     # Start up the server to expose the metrics.
     start_http_server(8000)
     
-    l = [ initSensor(n,m) for n,m in dSensor.items()]
+    l = [ PeripheralWrapper(n,m) for n,m in dSensor.items()]
 
     while True:
-        for i,p in enumerate(l):
-            #Manage connection issues
-            if type(p)==tuple :
-                (name,mac)=p
-                l[i]=initSensor(name,mac)  # TODO: not elegant
-                continue
-                
-            try:
-                if p.waitForNotifications(1.0):
-                    continue
-            except btle.BTLEDisconnectError:
-                print(f'{p.addr} disconnect')
-                g_error.labels(position=name,kind='disconnect').inc()
-                try:
-                    p.connect(p.addr)
-                except:
-                    g_error.labels(position=name,kind='reconnect').inc()
+        for i in l:
+            i.consumeNotification()
                     
